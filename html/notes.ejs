@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="user-left">Welcome, <%= user.displayName %></div>
+    <div class="user-right">
+      <form action="/logout" method="GET">
+        <button type="submit" class="logout-button">Logout</button>
+      </form>
+      <button id="darkToggle" class="dark-toggle">🌓</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Your Notes</h2>
+
+      <form method="GET" action="/notes" class="filter-form">
+        <label>Filter by category:</label>
+        <select name="category">
+          <option value="">All</option>
+          <% categories.forEach(cat => { %>
+            <option value="<%= cat %>" <%= cat === selectedCategory ? 'selected' : '' %>><%= cat %></option>
+          <% }) %>
+        </select>
+
+        <label>Sort by:</label>
+        <select name="sort">
+          <option value="">Default</option>
+          <option value="titleAsc" <%= sort === 'titleAsc' ? 'selected' : '' %>>Title A-Z</option>
+          <option value="titleDesc" <%= sort === 'titleDesc' ? 'selected' : '' %>>Title Z-A</option>
+          <option value="categoryAsc" <%= sort === 'categoryAsc' ? 'selected' : '' %>>Category A-Z</option>
+          <option value="categoryDesc" <%= sort === 'categoryDesc' ? 'selected' : '' %>>Category Z-A</option>
+        </select>
+
+        <button type="submit">Apply</button>
+      </form>
+
+      <input type="text" id="search" placeholder="Search notes...">
+
+      <ul class="note-list">
+        <% notes.forEach(note => { %>
+          <li class="note-entry">
+            <h3 contenteditable="true"><%= note.title %></h3>
+            <p contenteditable="true"><%= note.content %></p>
+            <small><%= note.category %></small><br>
+            <a href="/notes/<%= note._id %>/edit">Edit</a>
+            <form action="/notes/delete/<%= note._id %>" method="POST" class="delete-form">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </aside>
+
+    <main class="notepad">
+      <h2>Create a Note</h2>
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="error-message"><%= error %></div>
+      <% } %>
+      <form action="/notes" method="POST">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="content" placeholder="Content" required></textarea>
+        <input type="text" name="category" placeholder="Category">
+        <button type="submit">Add Note</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="/scripts.js"></script>
+</body>
+</html>

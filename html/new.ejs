@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Note</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <h1>New Note</h1>
+    <form action="/notes" method="POST">
+      <input type="text" name="title" placeholder="Title" required><br>
+      <textarea name="content" placeholder="Content" required></textarea><br>
+      <input type="text" name="category" placeholder="Category"><br>
+      <button type="submit">Create Note</button>
+    </form>
+    <a href="/notes">Back to Notes</a>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Note</title>
+    <link rel="stylesheet" href="/styles.css">
+
+  </head>
+  <body>
+    <h1>Edit Note</h1>
+
+    <form action="/notes/update/<%= note._id %>" method="POST">
+      <input type="text" name="title" value="<%= note.title %>" required><br>
+      <textarea name="content" required><%= note.content %></textarea><br>
+      <input type="text" name="category" value="<%= note.category %>"><br>
+      <button type="submit">Update Note</button>
+    </form>
+
+    <a href="/notes">Back to Notes</a>
+  </body>
+</html>

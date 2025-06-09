@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - My Notes App</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .auth-buttons a {
+      display: inline-block;
+      background-color: #db4437;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .auth-buttons img {
+      height: 20px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .user-info {
+      margin-top: 20px;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .dashboard-link {
+      display: inline-block;
+      margin-top: 10px;
+      background: #007bff;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .dashboard-link:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Notes App</h1>
+    <h2>Login with Google</h2>
+    <p>This demo shows how to implement Google OAuth authentication with PassportJS.</p>
+
+    <div class="auth-buttons">
+      <a href="/auth/google">
+        <img src="/google-logo.png" alt="Google Logo">
+        Login with Google
+      </a>
+    </div>
+
+    <% if (user) { %>
+      <div class="user-info">
+        <p>You're already logged in as: <%= user.displayName %></p>
+        <a href="/dashboard" class="dashboard-link">Go to Dashboard</a>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>

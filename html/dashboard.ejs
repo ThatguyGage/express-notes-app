@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - My Notes App</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .profile-pic {
+      width: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    .notes-btn, .logout-btn {
+      display: inline-block;
+      margin-top: 15px;
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .notes-btn:hover, .logout-btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard</h1>
+    <% if (user) { %>
+      <div class="user-profile">
+        <% if (user.photo) { %>
+          <img src="<%= user.photo %>" alt="Profile Picture" class="profile-pic">
+        <% } %>
+        <h2>Welcome, <%= user.displayName %>!</h2>
+        <p>Email: <%= user.email %></p>
+        <p>Google ID: <%= user.id %></p>
+      </div>
+      <a href="/notes" class="notes-btn">Go to Notes</a>
+      <a href="/logout" class="logout-btn">Logout</a>
+    <% } else { %>
+      <p>You need to login to view this page.</p>
+      <a href="/" class="notes-btn">Go to Login</a>
+    <% } %>
+  </div>
+</body>
+</html>
